@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    index1
-    <img src="~@/assets/logo.png">
+    欢迎你
     <router-view/>
   </div>
 </template>

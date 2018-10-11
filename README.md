@@ -17,6 +17,9 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 
+#创建页面
+npm run create
+
 # run unit tests
 npm run unit
 
