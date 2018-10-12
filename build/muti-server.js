@@ -76,7 +76,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 function reBulid(type,path,compiler,server){
   if(!/.+main\.js$/.test(path)) return;
   path=path.replace(/\\/g,"/");
-  let baseName=path.match(/pages\/(.+)\/main.js/)[1];
+  let matchs=path.match(/pages\/(.+)\/main.js/);
+  if(!matchs) return;
+  let baseName=matchs[1];
   if(type=="DELETE"){
     let newCompilation=[];
     let newMake=[];

@@ -16,8 +16,10 @@ exports.entrys=function(){
   let entrys={};
   glob.sync(globPath).forEach(function(gPath){
       let matchs=gPath.match(/pages\/(.+)\/main.js/);
-      let name=matchs[1];
-      entrys[name]=gPath;
+      if(matchs){
+        let name=matchs[1];
+        entrys[name]=gPath;
+      }
   })
   return entrys;
 }
