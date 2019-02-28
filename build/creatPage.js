@@ -7,7 +7,7 @@ const mkdirp = require("mkdirp");
         message:"输入页面名字:",
         name:"page",
         validate:function(val){
-            let page=path.join(__dirname,`../src/pages/${val}`);
+            let page=path.join(__dirname,`../src/app/${val}`);
             if(fs.existsSync(page)){
                return "页面已存在" 
             }
@@ -15,7 +15,7 @@ const mkdirp = require("mkdirp");
         }
     }]).then(answers =>{
         let from=path.join(__dirname,`./template`);
-        let dist=path.join(__dirname,`../src/pages/${answers.page}`);
+        let dist=path.join(__dirname,`../src/app/${answers.page}`);
         copy(from,dist);
     })
     

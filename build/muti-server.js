@@ -76,7 +76,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 function reBulid(type,path,compiler,server){
   if(!/.+main\.js$/.test(path)) return;
   path=path.replace(/\\/g,"/");
-  let matchs=path.match(/pages\/(.+)\/main.js/);
+  let matchs=path.match(/app\/(.+)\/main.js/);
   if(!matchs) return;
   let baseName=matchs[1];
   if(type=="DELETE"){
@@ -123,7 +123,7 @@ function reBulid(type,path,compiler,server){
 WebpackDevServer.addDevServerEntrypoints(devWebpackConfig, devServer);
 let compiler=webpack(devWebpackConfig);
 const server= new WebpackDevServer(compiler,devServer);
-var watcher=chokidar.watch(path.join(__dirname,'../src/pages'))
+var watcher=chokidar.watch(path.join(__dirname,'../src/app'))
 watcher.on('ready', () => {
   watcher.on('add', (path) => {
     reBulid("ADD",path,compiler,server)

@@ -3,7 +3,19 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
+const name = require('../package.json').name;
+function getIPAdress(){//获取ip地址
+  var interfaces = require('os').networkInterfaces();  
+  for(var devName in interfaces){  
+        var iface = interfaces[devName];  
+        for(var i=0;i<iface.length;i++){  
+             var alias = iface[i];  
+             if(alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal){  
+                   return alias.address;  
+             }  
+        }  
+  }  
+} 
 module.exports = {
   dev: {
 
@@ -13,8 +25,8 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    host: getIPAdress(), // can be overwritten by process.env.HOST
+    port: 8090, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
@@ -37,13 +49,12 @@ module.exports = {
   },
 
   build: {
-    // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
+    index: path.resolve(__dirname, `../plugins/${name}/index.html`),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsRoot: path.resolve(__dirname,`../plugins/${name}`),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps

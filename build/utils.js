@@ -12,10 +12,10 @@ exports.assetsPath = function (_path) {
   return path.posix.join(assetsSubDirectory, _path)
 }
 exports.entrys=function(){
-  let globPath=path.join(__dirname,'..','src/pages/**/main.js');
+  let globPath=path.join(__dirname,'..','src/app/**/main.js');
   let entrys={};
   glob.sync(globPath).forEach(function(gPath){
-      let matchs=gPath.match(/pages\/(.+)\/main.js/);
+      let matchs=gPath.match(/app\/(.+)\/main.js/);
       if(matchs){
         let name=matchs[1];
         entrys[name]=gPath;
